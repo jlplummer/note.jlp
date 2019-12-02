@@ -1,0 +1,48 @@
+body {background-color: grey;}
+
+.header {
+    background-color: whitesmoke;
+    width: 100%;
+    font: georgia;
+    font-size: large;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+.navbar li {
+    float: left;
+    padding: 2px;
+}
+
+.navbar li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar li a:hover {
+    background-color: darkgreen;
+    color: grey;
+}
+
+.note {
+    background-color: whitesmoke;
+    max-width: 40%;
+    margin: 5px;
+    display: inline-block;
+    width: 33.33%;
+    padding: 5px;
+}
+
+h1 {
+    background-color: black;
+    color: white;
+}

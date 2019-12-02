@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="notes.css" />
+        <script>
+                function callHost() {
+                    var xhttp = new XMLHttpRequest();
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("statusUpdate").innerHTML = this.responseText;
+                        }
+                    };
+                    xhttp.open("GET", "localhost:8080/", true);
+                    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+                    xhttp.send();
+                };
+            </script>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Notes.jlp</h1>
+        </div>
+
+        <div class="navbar">
+            <ul>
+                <li><a href="#notebook1">Notebook 1</a></li>
+                <li><a href="#notebook2">Notebook 2</a></li>
+                <li><a href="#notebook3">Notebook 3</a></li>
+            </ul>
+        </div>
+        <div id="note1" class="note">
+                <h1>Note</h1>
+                <p><input type="text" value="This is a note." onblur="callHost()"/></p>
+        </div>
+        <div id="note2" class="note">
+                <h1>Note</h1>
+                <p>This is also a note.</p>
+        </div>
+        <div id="note3" class="note">
+                <h1>Note</h1>
+                <p>This is still a note.</p>
+        </div>
+
+        <div class="status" >
+            <p id="statusUpdate">Some status</p>
+        </div>
+    </body>
+
+</html>
