@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"text/template"
 )
 
 func handler(w http.ResponseWriter, r *http.Request) {
@@ -29,9 +30,14 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Println(string(body))
+
+	t, _ := template.ParseFiles("static/notes.html")
+	t.Execute(w, nil)
 }
 
 func main() {
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.HandleFunc("/", handler)
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatal(err)
