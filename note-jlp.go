@@ -9,15 +9,10 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 
-	//w.Header().Set("Access-Control-Allow-Origin", "*")
-
-	/*if r.URL.Path != "/" {
+	if r.URL.Path != "/" {
 		http.Error(w, "404 not found", http.StatusNotFound)
 		return
-	}*/
-
-	fmt.Println("url path:", r.URL.Path)
-	http.ServeFile(w, r, "notes.html")
+	}
 
 	switch r.Method {
 	case "GET":
