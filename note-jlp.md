@@ -8,31 +8,45 @@ web front end design.
 / (Project Root)
     > config
         >> note-jlp.properties
+    > data
     > static
         >> notes.css
         >> notes.html
-    > data
     note-jlp.go
     note-jlp.md (This file)
     README.md
 ```
 
+## Data Storage
+
+**/data/notebooks/***{id}***/notes/***{noteId}*  
+&nbsp;&nbsp;&nbsp;&nbsp;*id* - notebook identifier, obtained from [note-jlp.properties](#note-jlp.properties)  
+&nbsp;&nbsp;&nbsp;&nbsp;*noteId* - individual note identifier, obtained from [note-jlp.properties](#note-jlp.properties)  
+
+#### note-jlp.properties
+````json
+    {
+    "notebookCounter": 0,
+    "noteCounter": 0
+    }
+````
+
 ## API Structure
 
-### Backend
-
 ##### Notebooks
-| Endpoint | Purpose | Method |
+| Endpoint | Method  | Purpose |
 | --- | --- | ---|
-|[```/notebook/add```](#notebookadd)| Add Notebook | POST
-|```/notebook/edit```| Edit Notebook | POST
-|```/notebook/delete```| Delete Notebook| POST
+|[```/notebooks/{id}```](#notebooks)| GET | Retrieve Notebook data
+|[```/notebooks/{id}```](#notebooks)| PUT | Add Notebook 
+|[```/notebooks/{id}```](#notebooks)| POST | Update Notebook 
 
 ##### Notes
-|**Endpoint**|**Purpose**| Method |
+|Endpoint|Method| Purpose |
 |---|---|---|
-|```/note/add```| Add Note to Notebook | POST
-|```/note/edit```| Edit note in Notebook | POST
-|```/note/delete```| Delete note from Notebook | POST
+|[```/notebooks/{id}/notes/{noteId}```](#notes)| GET | Retrieve Note data
+|[```/notebooks/{id}/notes/{noteId}```](#notes)| PUT | Add note in Notebook 
+|[```/notebooks/{id}/notes/{noteId}```](#notes)| POST | Update note in Notebook 
 
-##### /notebook/add
+##### /notebooks
+
+##### /notes

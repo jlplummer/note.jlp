@@ -9,8 +9,7 @@
                             document.getElementById("statusUpdate").innerHTML = this.responseText;
                         }
                     };
-                    xhttp.open("GET", "localhost:8080/", true);
-                    xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+                    xhttp.open("GET", ":8080/", true);
                     xhttp.send();
                 };
             </script>
