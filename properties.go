@@ -1,7 +1,7 @@
 // Handles retrieving and updating the note.jlp properties file
 package main
 
-//TODO: Since you're just using WriteFile to update the properties, there is no need pass a file pointer around
+// TODO: Since you're just using WriteFile to update the properties, there is no need pass a file pointer around
 
 import (
 	"encoding/json"
@@ -22,7 +22,7 @@ type Properties struct {
 
 // Function handles opening and unmarshalling properties file into a struct.
 func (p *Properties) OpenProperties() (*os.File, Properties, error) {
-	propFile, err := os.OpenFile(propertiesFile, os.O_RDWR|os.O_TRUNC, 0744)
+	propFile, err := os.Open(propertiesFile)
 	if err != nil {
 		return nil, *p, err
 	}

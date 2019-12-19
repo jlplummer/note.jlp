@@ -7,10 +7,6 @@ import (
 )
 
 func main() {
-	var n = note.Note{}
-	n.GenerateNote(0, "Note Title", "Note Body")
-	fmt.Println("Your note:", "\n", n)
-
 	var p Properties
 	fp, p, err := p.OpenProperties()
 	if err != nil {
@@ -28,7 +24,12 @@ func main() {
 			panic(err)
 		}
 
-		n = note.Note{noteId, "Note Title", "Note Body"}
+		// new() required to allocate memory for the pointer?
+		var n *note.Note = new(note.Note)
+		n, err = n.GenerateNote(noteId, "Note Title", "Note Body", p.DataPath)
+		if err != nil {
+			panic(err)
+		}
 		fmt.Println("Note:", n)
 	}
 

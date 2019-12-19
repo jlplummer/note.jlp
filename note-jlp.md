@@ -25,10 +25,19 @@ web front end design.
 
 #### note-jlp.properties
 ````json
-    {
+{
     "notebookCounter": 0,
     "noteCounter": 0
-    }
+}
+````
+
+#### Sample Note
+````json
+{
+    "id": int,
+    "noteTitle": string,
+    "noteBody": string
+}
 ````
 
 ## API Structure
