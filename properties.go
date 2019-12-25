@@ -5,7 +5,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"io/ioutil"
 	"os"
 )
@@ -40,7 +39,6 @@ func (p *Properties) OpenProperties() (*os.File, Properties, error) {
 
 // Closes the open Properties file
 func (p *Properties) CloseProperties(fp *os.File) {
-	fmt.Println("Closing", fp.Name())
 	fp.Sync()
 	fp.Close()
 }
@@ -65,9 +63,6 @@ func (p *Properties) writeProperties(fp *os.File) {
 		fp.Close()
 		panic(err)
 	}
-
-	fmt.Println("Writing", b)
-	fmt.Println("fp", fp.Name())
 
 	err = ioutil.WriteFile(propertiesFile, b, 0755)
 	if err != nil {
