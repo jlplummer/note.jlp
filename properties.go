@@ -20,47 +20,40 @@ type Properties struct {
 }
 
 // Function handles opening and unmarshalling properties file into a struct.
-func (p *Properties) OpenProperties() (*os.File, Properties, error) {
+func (p *Properties) OpenProperties() (Properties, error) {
 	propFile, err := os.Open(propertiesFile)
 	if err != nil {
-		return nil, *p, err
+		return *p, err
 	}
 	defer propFile.Close()
 
 	byteValue, err := ioutil.ReadAll(propFile)
 	if err != nil {
-		return nil, *p, err
+		return *p, err
 	}
 
 	json.Unmarshal(byteValue, &p)
 
-	return propFile, *p, nil
-}
-
-// Closes the open Properties file
-func (p *Properties) CloseProperties(fp *os.File) {
-	fp.Sync()
-	fp.Close()
+	return *p, nil
 }
 
 // Increments NotebookCntr property, commits change to disk and returns the next counter
-func (p *Properties) NewNotebookId(fp *os.File) (int, error) {
+func (p *Properties) NewNotebookId() (int, error) {
 	p.NotebookCntr++
-	p.writeProperties(fp)
+	p.writeProperties()
 	return p.NotebookCntr, nil
 }
 
 // Increments NoteCntr property, commits change to disk and returns the next counter
-func (p *Properties) NewNoteId(fp *os.File) (int, error) {
+func (p *Properties) NewNoteId() (int, error) {
 	p.NoteCntr++
-	p.writeProperties(fp)
+	p.writeProperties()
 	return p.NoteCntr, nil
 }
 
-func (p *Properties) writeProperties(fp *os.File) {
+func (p *Properties) writeProperties() {
 	b, err := json.MarshalIndent(p, "", " ")
 	if err != nil {
-		fp.Close()
 		panic(err)
 	}
 

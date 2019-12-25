@@ -8,13 +8,12 @@ import (
 
 func main() {
 	var p Properties
-	fp, p, err := p.OpenProperties()
+	p, err := p.OpenProperties()
 	if err != nil {
 		panic(err)
 	}
-	defer p.CloseProperties(fp)
 
-	nbId, err := p.NewNotebookId(fp)
+	nbId, err := p.NewNotebookId()
 	if err != nil {
 		panic(err)
 	}
@@ -26,7 +25,7 @@ func main() {
 	}
 
 	var n *note.Note = new(note.Note)
-	nId, err := p.NewNoteId(fp)
+	nId, err := p.NewNoteId()
 	if err != nil {
 		panic(err)
 	}
@@ -44,7 +43,7 @@ func main() {
 	}
 
 	var n2 *note.Note = new(note.Note)
-	nId2, err := p.NewNoteId(fp)
+	nId2, err := p.NewNoteId()
 	if err != nil {
 		panic(err)
 	}
