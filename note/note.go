@@ -36,10 +36,11 @@ func (n *Note) createNote(basePath string) error {
 
 	var fileToWrite []string
 	fileToWrite = append(fileToWrite, basePath)
+	fileToWrite = append(fileToWrite, "/")
 	fileToWrite = append(fileToWrite, strconv.Itoa(n.ID))
-	fileToWrite1 := strings.Join(fileToWrite, "")
+	fileToWrite = append(fileToWrite, ".note")
 
-	err = ioutil.WriteFile(fileToWrite1, b, 0755)
+	err = ioutil.WriteFile(strings.Join(fileToWrite, ""), b, 0755)
 	if err != nil {
 		return err
 	}
