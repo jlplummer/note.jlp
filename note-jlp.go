@@ -43,6 +43,38 @@ func main() {
 		panic(err)
 	}
 
+	var n2 *note.Note = new(note.Note)
+	nId2, err := p.NewNoteId(fp)
+	if err != nil {
+		panic(err)
+	}
+
+	n2, err = n2.GenerateNote(nId2, "Second Note Title", "2nd Note Body", nb.NotebookPath)
+	if err != nil {
+		panic(err)
+	}
+
+	err = nb.AddNote(n2)
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println("nb after add", nb)
+
+	n.NoteTitle = "Updated Title"
+	success := nb.UpdateNote(n)
+	if success != true {
+		panic("cannot update note")
+	}
+	fmt.Println("nb after update", nb)
+
+	fmt.Println("deleting", n2.ID)
+	success = nb.DeleteNote(n2)
+	if success != true {
+		panic("cannot delete note")
+	}
+
+	fmt.Println("nb after delete", nb)
 	/*
 		fmt.Println("Properties")
 		fmt.Println("NotebookCntr:", p.NotebookCntr)
