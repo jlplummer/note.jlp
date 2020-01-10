@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+
 	var p Properties
 	p, err := p.OpenProperties()
 	if err != nil {
